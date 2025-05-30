@@ -1,21 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanderlust</title>
-</head>
+<% layout('./layouts/boilerplate') -%>
 <body>
-    <h1>All listings...</h1>
-    <form method="get" action="/listings/new">
-        <button>Create New</button>
-    </form>
-    
-    <ul>
+    <div class="row row-cols-1 row-cols-sm-3 g-4">
+    <% for(let listing of allListings) { %>
+    <a href="/listings/<%= listing._id %>" class="listing-link shadow ">
+        <div class="col">
+        <div class="card h-100" style="width: 100%;">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing-image">
+            <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <b><%= listing.title %></b><br>
+            ₹<%= listing.price.toLocaleString("en-IN") %> for 2 nights
+        </div>
+        <div>
+            <i class="fa-solid fa-star text-warning"></i>
+            <%= (Math.random() + 4).toFixed(1) %>
+        </div>
+    </div>
+</div>
 
-    <% for(listing of allListings) { %>
-        <li>    <a href="/listings/<%=listing._id%>" >  <%= listing.title %>  </a>       </li>
-        <% } %>
-    </ul>
+        </div>
+    </div>
+    <% } %>
+    </a>
+    
+</div>
+
+    
+                            <!-- <h1>All listings...</h1> -->
+                            <!-- <form method="get" action="/listings/new">
+                                <button>Create New</button>
+                            </form> -->
 </body>
-</html>
+
+

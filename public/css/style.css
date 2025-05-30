@@ -1,0 +1,88 @@
+body {
+    font-family: "Montserrat", sans-serif !important;
+}
+
+
+.navbar {
+    height: 5rem;
+    background-color: white;
+
+}
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #222222 !important;
+}
+
+/* 
+footer */
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info-links {
+    width: 100%;
+}
+.f-info-socials{
+    width: 100%;
+    align-content: center;
+}
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 0.7rem;
+}
+.f-info-brand,.f-info-links{
+    align-content: center;
+}
+
+.f-info {
+    display: flex;
+    height: 8rem;
+    flex-wrap: wrap;
+    background-color: #ebebeb;
+    justify-content: center;
+    align-items: space-evenly;
+    text-align: center;
+}
+
+.listing-link {
+    text-decoration: none;
+}
+.listing-link:hover {
+    box-shadow: none !important;
+    opacity: 0.9 !important;
+}
+
+
+.card {
+    border: none !important;
+    margin-bottom: 2rem !important ;
+    
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100%;
+    object-fit: cover;
+    height: 17rem;
+}
+.card-body {
+    padding: 1px !important;
+}
+.fa-star {
+    opacity: 0.7;
+}
+.card-text b{
+    font-weight: 600;
+}
+.card-text{
+    width: 100% !important;
+}

@@ -22,7 +22,9 @@ async function main() {
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.engine('ejs',engine);
+app.engine('ejs',ejsMate);
+
+app.use(express.static(path.join(__dirname,"/public")))
  
 app.get("/", (req,res)=> {
     res.send("working");
@@ -99,3 +101,4 @@ app.delete("/listings/:id" ,async (req,res)=> {
     console.log(deleteListing);
     res.redirect("/listings")
 })
+
