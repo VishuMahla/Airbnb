@@ -10,7 +10,7 @@
     <div class="d-flex justify-content-between align-items-center">
         <div>
             <b><%= listing.title %></b><br>
-            ₹<%= listing.price.toLocaleString("en-IN") %> for 2 nights
+            ₹ <%= (listing.price).toLocaleString("en-IN") %> for 2 nights
         </div>
         <div>
             <i class="fa-solid fa-star text-warning"></i>
@@ -25,12 +25,6 @@
     </a>
     
 </div>
-
-    
-                            <!-- <h1>All listings...</h1> -->
-                            <!-- <form method="get" action="/listings/new">
-                                <button>Create New</button>
-                            </form> -->
 </body>
 
 
