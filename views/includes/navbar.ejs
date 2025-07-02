@@ -11,5 +11,17 @@
         <a class="nav-link" href="/listings/new">Add new Listings</a>
       </div>
     </div>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <% if(!curUser) { %>
+        <a class="nav-link" href="/signup">Sign Up</a>
+        <a class="nav-link " href="/login">Log in</a>
+        <% } %>
+        <% if(curUser) {%>
+        <a class="nav-link" href="/logout">Log out</a>
+        <% } %>
+      </div>
+    </div>
   </div>
 </nav>

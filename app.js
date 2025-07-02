@@ -7,9 +7,13 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js");
+const ListingsRouter = require("./routes/listing.js");
+const ReviewsRouter = require("./routes/review.js");
+const UserRouter = require("./routes/User.js");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
 
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
@@ -49,21 +53,30 @@ const sessionOptions = {
 
 app.use(session(sessionOptions)) ;
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+// passport.use(new LocalStrategy(User.authenticate()));
+passport.use(User.createStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req,res,next)=> {
   res.locals.success = req.flash("success"); 
-  res.locals.failure = req.flash("failure");
+  res.locals.error = req.flash("error");
+  res.locals.curUser = req.user ;
   next();
 })
 
-app.use("/listings", listings) ;
-app.use("/listings/:id/reviews" , reviews) ;
+
+app.use("/listings", ListingsRouter) ;
+app.use("/listings/:id/reviews" , ReviewsRouter) ;
+app.use("/", UserRouter) ;
+
 
 app.all(/./, (req, res, next) => {
   next(new ExpressError(404,"Page Not Found"));
 });
-
 
 app.use((err,req,res,next)=> {
     let { statusCode = 500, message="something went wrong" } = err ;

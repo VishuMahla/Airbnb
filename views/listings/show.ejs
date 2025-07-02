@@ -6,9 +6,9 @@
     <div class="offset-2">
         <h3><%= listing.title %></h3>
         <div class="card listing-card" style="width: 45rem;">
-        <img style="height: 15rem;" src="<%=listing.image.url%>" class="card-img-top " alt="listing image">
+        <img style="height: 15rem;" src="<%=listing.image%>" class="card-img-top " alt="listing image">
         <div class="card-body">
-            <h6 class="card-title"></h6>
+            <p>Owned By : <i>@<%= listing.owner.username %> </i> </p>
             <p class="card-text"><%= listing.description %>
                 <br>
                 &#8377; <%= listing.price.toLocaleString("en-IN") %> for 2 nights
@@ -17,6 +17,7 @@
                 <br>
                 <%= listing.country %>
             </p>
+            <% if(curUser&&curUser._id.equals(listing.owner._id)) {%>
             <div class="d-flex justify-content-around">
                 <a href="/listings/<%=listing.id%>/edit" class="btn btn-danger">
                     Edit
@@ -25,8 +26,10 @@
                     <button class="btn btn-danger">Delete</button>
                 </form>
             </div>
+            <% } %>
             <hr>
             <div class="">
+            <% if(curUser){ %> 
                 <h4>Leave a review</h4>
                 <form class="form-label needs-validation" novalidate method="post" action="/listings/<%=listing.id%>/reviews">
                     <label for="rating" >Rating</label>
@@ -40,16 +43,15 @@
                     </div>
                     <button class="btn btn-outline-primary">submit</button>
                 </form>
-
+                <% } %>
             </div>
-            <hr>
 
             <h4>All reviews</h4>
             <div class="row" >
                  <% for(review of listing.reviews){ %>
             <div class="card col-5 me-4 ms-2 mb-4" >
                 <div class="card-body">
-                <h5 class="card-title">godness</h5>
+                <h5 class="card-title"> <%= review.author.username %></h5>
                 <p class="card-text"><%= review.comment %></p>
                 <p class="card-text">rating : <%= review.rating  %> stars</p>
                 </div>
