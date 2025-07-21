@@ -3,11 +3,14 @@ const ExpressError = require("./utils/ExpressError.js");
 const {listingSchema} = require("./schema.js") ;
 const {reviewSchema} =require("./schema.js") ;
 const review = require("./models/review.js");
+
+
+
 module.exports.isLoggedIn = (req,res,next)=> {
     if(!req.isAuthenticated()){
-        //storing url
-        req.session.redirectUrl = req.originalUrl ;  
-        console.log(req.session.redirectUrl);
+        if(req.method === "GET"){
+            req.session.redirectUrl = req.originalUrl ;  
+        }
         req.flash("error","You need to login first");
         return res.redirect("/login");
     }
@@ -18,7 +21,6 @@ module.exports.isLoggedIn = (req,res,next)=> {
 module.exports.saveRedirectUrl = (req, res, next) => {
     if(req.session.redirectUrl){
         res.locals.redirectUrl = req.session.redirectUrl ;
-        console.log(res.locals.redirectUrl);
     }
     next() ;
 } ; 

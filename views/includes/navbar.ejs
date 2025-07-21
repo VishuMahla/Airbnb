@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
@@ -6,20 +8,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link " href="/">Home</a>
-        <a class="nav-link" href="/listings">All Listings</a>
-        <a class="nav-link" href="/listings/new">Add new Listings</a>
+        <a class="btn " href="/">Explore</a>
       </div>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
+        <a class="btn " href="/listings/new">Airbnb your home</a>
         <% if(!curUser) { %>
-        <a class="nav-link" href="/signup">Sign Up</a>
-        <a class="nav-link " href="/login">Log in</a>
+        <a class="btn btn-outline-danger ms-2 me-2" href="/signup">Sign Up</a> 
+        <a class="btn btn-outline-danger" href="/login">Log in</a>
         <% } %>
         <% if(curUser) {%>
-        <a class="nav-link" href="/logout">Log out</a>
+        <a class="btn btn-outline-danger" href="/logout">Log out</a>
         <% } %>
       </div>
     </div>

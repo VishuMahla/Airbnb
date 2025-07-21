@@ -4,7 +4,8 @@
 
     <div class="row">
         <div class="col-6 offset-2">
-        <form method="post" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation">
+        <form method="post" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation"
+            enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label" >Title</label>
             <input name="listing[title]" required class="form-control" type="text" id="title" value= "<%= listing.title %>" > 
@@ -26,10 +27,12 @@
                 Description ?
             </div>
         </div>
-
+         <div class="mb-3">
+            <img  src="<%= blurimageurl %> " >
+        </div>
         <div class="mb-3">
             <label for="image" class="form-label" >Image URL</label>
-            <input name="listing[image]" required id="image"  class="form-control" type="text" value="<%=listing.image%>">
+            <input name="listing[image]"  id="image"  class="form-control" type="file" >
         </div>
         <div class="row">
             <div class="mb-3 col-md-4">
@@ -57,7 +60,6 @@
                 Location should be valid  
                 </div>
         </div>
-        
         
          
         <button class="btn btn btn-outline-danger edit-btn mt-3 mb-3">Edit</button>
