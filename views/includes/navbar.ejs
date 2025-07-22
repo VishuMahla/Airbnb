@@ -1,28 +1,123 @@
+<style>
+  @media (max-width: 576px) {
+    .search-bar {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+      max-width: 10rem;
+    }
 
+    .search-btn {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.75rem;
+    }
+
+    .navbar-toggler {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .navbar .btn {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .navbar-brand {
+      font-size: 1.2rem;
+    }
+
+    .navbar-collapse .btn {
+      padding: 0.4rem 0.6rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  
+</style>
+
+<style>
+  .search-bar {
+    border-radius: 3.3rem;
+    padding: 0.5rem 1.5rem;
+    width: 100%;
+    max-width: 20rem;
+  }
+  .search-btn {
+    background-color: #fe424d;
+    color: white;
+    border-radius: 3.3rem;
+    padding: 0.5rem 1.5rem;
+    white-space: nowrap;
+  }
+  .search-btn:hover {
+    background-color: #fe424d;
+    color: white;
+  }
+</style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="btn " href="/">Explore</a>
+    
+    <!-- Mobile View: icon + search + hamburger in one line -->
+    <div class="d-flex d-md-none align-items-center justify-content-between w-100">
+      <!-- Icon -->
+      <a class="navbar-brand me-2" href="/"><i class="fa-regular fa-compass"></i></a>
+
+      <!-- Search bar -->
+      <form class="d-flex flex-grow-1 me-2" role="search">
+        <input class="form-control search-bar me-2" type="search" placeholder="Search destination" aria-label="Search" />
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass d-inline me-2"></i>Search
+        </button>
+      </form>
+
+      <!-- Hamburger button (works!) -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Desktop View: nav links + search + auth -->
+    <div class="collapse navbar-collapse d-none d-md-flex" id="mainNavbar">
+      <a class="navbar-brand me-2" href="/"><i class="fa-regular fa-compass"></i></a>
+      <div class="navbar-nav me-auto">
+        <a class="btn" href="/">Explore</a>
+        <a class="btn" href="/listings/new">Airbnb your home</a>
+      </div>
+
+      <form class="d-flex mx-3" role="search">
+        <input class="form-control search-bar me-2" type="search" placeholder="Search destination" aria-label="Search" />
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass d-inline me-2"></i>Search
+        </button>
+      </form>
+
+      <div class="navbar-nav ms-auto">
+        <% if (!curUser) { %>
+          <a class="btn btn-outline-danger ms-2 me-2" href="/signup">Sign Up</a>
+          <a class="btn btn-outline-danger" href="/login">Log in</a>
+        <% } %>
+        <% if (curUser) { %>
+          <a class="btn btn-outline-danger" href="/logout">Log out</a>
+        <% } %>
       </div>
     </div>
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav ms-auto">
-        <a class="btn " href="/listings/new">Airbnb your home</a>
-        <% if(!curUser) { %>
-        <a class="btn btn-outline-danger ms-2 me-2" href="/signup">Sign Up</a> 
-        <a class="btn btn-outline-danger" href="/login">Log in</a>
-        <% } %>
-        <% if(curUser) {%>
-        <a class="btn btn-outline-danger" href="/logout">Log out</a>
-        <% } %>
-      </div>
+    <!-- Mobile collapsible menu below search (optional) -->
+    <!-- Mobile dropdown (fake dropdown menu) -->
+<div class="collapse d-md-none" id="mainNavbar">
+  <div class="position-absolute end-0 mt-2 p-3 bg-white shadow rounded" style="min-width: 200px; z-index: 1000;">
+    <div class="navbar-nav">
+      <a class="btn w-100 text-start mb-2" href="/">Explore</a>
+      <a class="btn w-100 text-start mb-2" href="/listings/new">Airbnb your home</a>
+
+      <% if (!curUser) { %>
+        <a class="btn btn-outline-danger w-100 mb-2" href="/signup">Sign Up</a>
+        <a class="btn btn-outline-danger w-100" href="/login">Log in</a>
+      <% } else { %>
+        <a class="btn btn-outline-danger w-100" href="/logout">Log out</a>
+      <% } %>
     </div>
+  </div>
+</div>
   </div>
 </nav>

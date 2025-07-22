@@ -1,22 +1,20 @@
 <% layout('./layouts/boilerplate') -%>
 
     <body>
-        <div class="offset-2">
-            <h3>
+        <div class="margin-auto">
+            
+            <div class="card listing-card mx-auto w-100" style="max-width: 45rem;">
+                <h3>
                 <%= listing.title %>
-            </h3>
-            <div class="card listing-card" style="width: 45rem;">
+                </h3>
                 <img style="height: 15rem;" src="<%=listing.image.url%>" class="card-img-top " alt="listing image">
                 <div class="card-body">
                     <p>Owned By : <i>@<%= listing.owner.username %> </i> </p>
                     <p class="card-text">
-                        <%= listing.description %>
-                            <br>
-                            &#8377; <%= listing.price.toLocaleString("en-IN") %> for 2 nights
-                                <br>
-                                <%= listing.location %>
-                                    <br>
-                                    <%= listing.country %>
+                        <p><%= listing.description %></p>
+                        <p>&#8377; <%= listing.price.toLocaleString("en-IN") %> for 2 nights</p>
+                                <p><%= listing.location %></p>
+                                <p><%= listing.country %></p> 
                     </p>
                     <% if(curUser&&curUser._id.equals(listing.owner._id)) {%>
                         <div class="d-flex justify-content-around">

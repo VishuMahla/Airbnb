@@ -1,26 +1,64 @@
 <% layout('./layouts/boilerplate') -%>
 
-<div class="row">
-    <div class="col-6 offset-3">
-        <h1> Signup on Nestera</h1>
-        <form method="post" action="/signup" novalidate class="needs-validation">
-            <div class="form-floating mb-3">
-                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username" >
-                <label for="floatingInput">Username</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-            <div class="d-flex justify-content-around mt-3">
-                <button class="btn btn-outline-danger">Sign up</button> 
-                <div> Already have an Account ? &nbsp; &nbsp;<a class="btn btn-outline-danger " href="/login"> Log in</a>
-                </div>
-            </div>
-        </form>
+<style>
+  .auth-container {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 1rem;
+  }
+
+  .auth-input,
+  .auth-button {
+    width: 100%;
+    max-width: 80%;
+    margin: 0.5rem auto;
+  }
+
+  .auth-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) {
+    .auth-button {
+      max-width: 70%;
+    }
+  }
+</style>
+
+<div class="auth-container">
+  <h1 class="text-center mb-4">Signup on Nestera</h1>
+
+  <form method="post" action="/signup" novalidate class="needs-validation">
+
+    <div class="form-floating mb-3 auth-input">
+      <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
+      <label for="email">Email address</label>
     </div>
+
+    <div class="form-floating mb-3 auth-input">
+      <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+      <label for="username">Username</label>
+    </div>
+
+    <div class="form-floating mb-3 auth-input">
+      <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+      <label for="password">Password</label>
+    </div>
+
+    <div class="auth-button d-flex justify-content-center">
+      <button type="submit" class="btn btn-outline-danger w-100">Signup</button>
+    </div>
+
+    <div class="auth-toggle">
+      <span>Already have an Account?</span>
+      <a class="btn btn-outline-danger btn-sm" href="/login">Log in</a>
+    </div>
+    
+  </form>
 </div>

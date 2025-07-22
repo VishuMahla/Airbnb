@@ -1,6 +1,119 @@
 <% layout('./layouts/boilerplate') -%>
+<style>
+    .filters {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 0.5rem; /* optional spacing between icons */
+  padding: 0 1rem;
+  scrollbar-width: none; /* Firefox */
+}
+
+.filters::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+    .filters{
+        width: 100%;
+        display: flex;
+        text-align: center;
+        
+    }
+    .filter{
+        margin-right:1rem;
+       opacity: 0.6;
+    }
+    .filter:hover{
+        opacity: 1;
+        cursor: pointer;
+    }
+    /* Shrink filter icons + labels only on small screens */
+@media (max-width: 576px) {
+  .filters {
+    padding: 0.5rem 0.75rem;
+    gap: 0.3rem;
+  }
+
+  .filter i {
+    font-size: 0.9rem;
+  }
+
+  .filter p {
+    font-size: 0.65rem;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 576px) {
+  /* Listing card size */
+  .listing-card {
+    font-size: 0.85rem;
+  }
+
+  .listing-card img {
+    height: 160px; /* reduce image height */
+    object-fit: cover;
+  }
+
+  .listing-card b {
+    font-size: 0.9rem;
+  }
+
+  .listing-card .card-body {
+    padding: 0.6rem;
+  }
+
+  .listing-link {
+    text-decoration: none;
+  }
+}
+
+</style>
 <body>
     <div class="row  row-cols-xs-1 row-cols-sm-2 row-cols-lg-3 g-4 mt-2">
+        <div class="filters">
+            <div class="filter">
+                <i class="fa-solid fa-fire"></i>
+                <p> Trending</p>
+            </div>
+            <div class="filter">
+                <i class="fa-solid fa-mountain"></i>
+                <p> Mountains</p>
+            </div>
+            <div class="filter">
+                <i class="fa-solid fa-snowflake"></i>
+                <p> Snow</p>
+            </div>
+            <div class="filter">
+                <i class="fa-solid fa-bed"></i>
+                <p> Rooms</p>
+            </div>
+            <div class="filter">
+                <i class="fa-solid fa-umbrella"></i>
+                <p> Rainy</p>
+            </div>
+
+            <div class="filter">
+                <i class="fa-solid fa-tents"></i>
+                <p> Camping</p>
+            </div>
+            <div class="filter">
+                <i class="fa-solid fa-person-swimming"></i>
+                <p> Pools</p>
+            </div>
+            <div class="filter">
+                <i class="fa-solid fa-snowflake"></i>
+                <p> Snow</p>
+            </div>
+            <div class="filter">
+                <i class="fa-solid fa-tractor"></i>
+                <p> Farm</p>
+            </div>
+            <div class="filter">
+                <i class="fa-solid fa-sailboat"></i>
+                <p> Boat</p>
+            </div>
+            
+
+        </div>
     <% for(let listing of allListings) { %>
     <a href="/listings/<%= listing._id %>" class="listing-link shadow ">
         <div class="col">
